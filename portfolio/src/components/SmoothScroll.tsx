@@ -1,0 +1,31 @@
+'use client';
+import { useEffect, useRef } from 'react';
+import Lenis from 'lenis';
+
+export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+    const lenisRef = useRef<Lenis | null>(null);
+
+    useEffect(() => {
+        const lenis = new Lenis({
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            touchMultiplier: 2,
+        });
+        lenisRef.current = lenis;
+
+        const raf = (time: number) => {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        };
+        requestAnimationFrame(raf);
+
+        // Expose lenis globally for GSAP integration
+        (window as unknown as Record<string, unknown>).lenis = lenis;
+
+        return () => {
+            lenis.destroy();
+        };
+    }, []);
+
+    return <>{children}</>;
+}

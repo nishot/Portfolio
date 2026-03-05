@@ -1,0 +1,144 @@
+{
+  "personal": {
+    "name": "Nishot Timalsina",
+    "title": "Backend Developer & Aspiring ML Engineer",
+    "tagline": "Building scalable backend systems today — engineering intelligent machines tomorrow.",
+    "location": "Butwal, Rupandehi, Nepal",
+    "profession": "AI / ML Engineer",
+    "industry": "Artificial Intelligence & Backend Systems",
+    "bio": "I'm Nishot Timalsina — a backend developer passionate about building scalable, efficient systems with Python and FastAPI. Currently diving deep into Machine Learning and Artificial Intelligence, I bridge the gap between robust backend architecture and intelligent data-driven solutions. I thrive in collaborative environments and love turning complex problems into elegant code.",
+    "avatar": "/myphoto.jpeg"
+  },
+  "stats": [
+    {
+      "value": 5,
+      "suffix": "+",
+      "label": "Projects"
+    }
+  ],
+  "socials": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/nishot",
+      "icon": "github"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/nishot-timalsina-322264325/",
+      "icon": "linkedin"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://x.com/Nishottimalsina",
+      "icon": "twitter"
+    }
+  ],
+  "collaborations": [],
+  "skills": [
+    {
+      "name": "Python",
+      "devicon": "python",
+      "category": "Languages"
+    },
+    {
+      "name": "C++",
+      "devicon": "cplusplus",
+      "category": "Languages"
+    },
+    {
+      "name": "HTML",
+      "devicon": "html5",
+      "category": "Languages"
+    },
+    {
+      "name": "CSS",
+      "devicon": "css3",
+      "category": "Languages"
+    },
+    {
+      "name": "FastAPI",
+      "devicon": "fastapi",
+      "category": "Frameworks"
+    },
+    {
+      "name": "PostgreSQL",
+      "devicon": "postgresql",
+      "category": "Databases"
+    },
+    {
+      "name": "MongoDB",
+      "devicon": "mongodb",
+      "category": "Databases"
+    },
+    {
+      "name": "Git",
+      "devicon": "git",
+      "category": "Tools"
+    },
+    {
+      "name": "Postman",
+      "devicon": "postman",
+      "category": "Tools"
+    },
+    {
+      "name": "Pandas",
+      "devicon": "pandas",
+      "category": "AI/ML"
+    },
+    {
+      "name": "NumPy",
+      "devicon": "numpy",
+      "category": "AI/ML"
+    }
+  ],
+  "projects": [
+    {
+      "title": "SpentWise",
+      "description": "SpentWise is a robust backend REST API built with FastAPI and PostgreSQL. It allows users to track daily expenses, categorize spending, and manage personal finances securely.",
+      "tech": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "githubUrl": "https://github.com/nishot/SpentWise",
+      "demoUrl": "",
+      "featured": true
+    },
+    {
+      "title": "Renyora",
+      "description": "Renyora is a full-stack AI-powered wellness assistant. It provides supplement recommendations, lifestyle tips, and chat-based health support.",
+      "tech": [
+        "FastAPI",
+        "PostgreSQL",
+        "React",
+        "Tailwind CSS"
+      ],
+      "githubUrl": "https://github.com/keshavraj936/Reynora-AI-",
+      "demoUrl": "",
+      "featured": true
+    }
+  ],
+  "contact": {
+    "email": "nishottimal11@gmail.com",
+    "whatsapp": "+919920580266",
+    "formAction": "https://formspree.io/f/mwvrewjz"
+  },
+  "nav": [
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Projects",
+      "href": "#projects"
+    },
+    {
+      "label": "Skills",
+      "href": "#skills"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ]
+}
