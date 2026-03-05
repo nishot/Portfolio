@@ -87,7 +87,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Contact Button */}
-                <Link href="/cv-placeholder" style={{ textDecoration: 'none' }}>
+                <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                     <button
                         style={{
                             padding: '10px 24px',
