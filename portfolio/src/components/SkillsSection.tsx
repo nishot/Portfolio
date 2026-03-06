@@ -90,16 +90,15 @@ export default function SkillsSection() {
 
             <div style={{ maxWidth: '1300px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
-                {/* Section header */}
-                <div className="reveal-up" style={{ marginBottom: '70px', textAlign: 'center' }}>
+                <div className="reveal-up" style={{ marginBottom: '40px', textAlign: 'center' }}>
                     <span style={{
                         fontFamily: 'var(--font-body)',
-                        fontSize: '0.7rem',
-                        letterSpacing: '0.25em',
+                        fontSize: '0.65rem',
+                        letterSpacing: '0.2em',
                         color: 'var(--forest-glow)',
                         textTransform: 'uppercase',
                         display: 'block',
-                        marginBottom: '12px',
+                        marginBottom: '8px',
                     }}>
                         ◆ &nbsp; Expertise
                     </span>

@@ -69,8 +69,8 @@ export default function ProjectsSection() {
                 {/* Projects grid */}
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
-                    gap: '24px',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                    gap: '20px',
                 }}>
                     {content.projects.map((project, index) => (
                         <ProjectCard key={project.title} project={project} index={index} />
@@ -101,7 +101,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 backdropFilter: 'blur(20px)',
                 border: '1px solid rgba(61, 186, 114, 0.12)',
                 borderRadius: '16px',
-                padding: '40px 32px 32px',
+                padding: '40px 20px 32px',
                 cursor: 'pointer',
                 overflow: 'hidden',
                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
