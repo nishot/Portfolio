@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import content from '@/content.json';
+import Parallax from './Parallax';
 
 // Map devicon slug → exact CDN filename variant
 const DEVICON_MAP: Record<string, string> = {
@@ -70,18 +71,18 @@ export default function SkillsSection() {
             style={{
                 position: 'relative',
                 background: 'linear-gradient(180deg, var(--forest-black) 0%, #060c09 100%)',
-                padding: '120px 40px',
+                padding: '60px 40px',
                 overflow: 'hidden',
             }}
         >
             {/* Ambient glow */}
-            <div style={{
+            <Parallax speed={-0.8} style={{
                 position: 'absolute', top: '30%', left: '-8%',
                 width: '420px', height: '420px',
                 background: 'radial-gradient(ellipse, rgba(61,186,114,0.06) 0%, transparent 70%)',
                 pointerEvents: 'none',
             }} />
-            <div style={{
+            <Parallax speed={1.2} style={{
                 position: 'absolute', bottom: '10%', right: '-5%',
                 width: '300px', height: '300px',
                 background: 'radial-gradient(ellipse, rgba(200,130,200,0.04) 0%, transparent 70%)',

@@ -71,7 +71,7 @@ export default function ContactSection() {
             style={{
                 position: 'relative',
                 background: 'linear-gradient(180deg, #060c09 0%, var(--forest-black) 100%)',
-                padding: '60px 40px 80px',
+                padding: '30px 40px 80px',
                 overflow: 'hidden',
             }}
         >
@@ -193,6 +193,7 @@ export default function ContactSection() {
                                         <input
                                             type="text"
                                             required
+                                            suppressHydrationWarning
                                             placeholder="Your name"
                                             value={form.name}
                                             onChange={e => setForm({ ...form, name: e.target.value })}
@@ -222,6 +223,7 @@ export default function ContactSection() {
                                         <input
                                             type="email"
                                             required
+                                            suppressHydrationWarning
                                             placeholder="your@email.com"
                                             value={form.email}
                                             onChange={e => setForm({ ...form, email: e.target.value })}
@@ -250,6 +252,7 @@ export default function ContactSection() {
                                         </label>
                                         <textarea
                                             required
+                                            suppressHydrationWarning
                                             rows={5}
                                             placeholder="Tell me about your project..."
                                             value={form.message}
@@ -267,6 +270,7 @@ export default function ContactSection() {
                                     </div>
                                     <button
                                         type="submit"
+                                        suppressHydrationWarning
                                         disabled={status === 'sending'}
                                         style={{
                                             padding: '14px 32px',

@@ -1,6 +1,5 @@
-@import "tailwindcss";
-
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
 
 :root {
     --forest-black: #050a07;
@@ -45,77 +44,8 @@ body {
     color: var(--text-primary);
     font-family: var(--font-body);
     overflow-x: hidden;
-    cursor: none;
 }
 
-/* Custom cursor */
-.forest-spirit {
-    position: fixed;
-    width: 12px;
-    height: 12px;
-    background: var(--forest-bright);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: screen;
-    box-shadow:
-        0 0 10px var(--forest-glow),
-        0 0 20px var(--forest-glow),
-        0 0 40px rgba(93, 232, 154, 0.4);
-    filter: blur(0.5px);
-    will-change: transform;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    perspective: 1000px;
-    transition: transform 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67),
-        width 0.3s ease,
-        height 0.3s ease,
-        opacity 0.3s ease;
-}
-
-.forest-spirit::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) translateZ(0);
-    width: 250%;
-    height: 250%;
-    background: radial-gradient(circle, rgba(93, 232, 154, 0.2) 0%, transparent 70%);
-    border-radius: 50%;
-    will-change: transform, opacity;
-    animation: spirit-pulse 2s infinite ease-in-out;
-}
-
-.forest-spirit.hovering {
-    width: 4px;
-    height: 4px;
-    background: var(--gold-light);
-    box-shadow:
-        0 0 30px var(--gold),
-        0 0 60px var(--gold-glow);
-    transform: scale(8);
-    opacity: 0.6;
-}
-
-.forest-spirit.clicking {
-    transform: scale(0.5);
-    opacity: 0.8;
-}
-
-@keyframes spirit-pulse {
-
-    0%,
-    100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.4;
-    }
-
-    50% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0.7;
-    }
-}
 
 
 /* Smooth scrolling handled by Lenis */

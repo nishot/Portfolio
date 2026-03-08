@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import BackToTop from "@/components/BackToTop";
 import content from "@/content.json";
@@ -33,7 +32,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body suppressHydrationWarning>
-        <CustomCursor />
         <SmoothScroll>
           <Navbar />
           {children}

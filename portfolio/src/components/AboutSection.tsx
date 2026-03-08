@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import content from '@/content.json';
+import Parallax from './Parallax';
 
 export default function AboutSection() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -30,7 +31,7 @@ export default function AboutSection() {
             style={{
                 position: 'relative',
                 background: 'linear-gradient(180deg, var(--forest-black) 0%, #060d08 50%, #080f0b 100%)',
-                padding: '120px 40px',
+                padding: '60px 40px',
                 overflow: 'hidden',
             }}
         >
@@ -53,7 +54,7 @@ export default function AboutSection() {
                     className="about-grid"
                 >
                     {/* Left - Ancient tree image */}
-                    <div className="reveal-left" style={{ position: 'relative', maxWidth: '440px', margin: '0 auto' }}>
+                    <Parallax speed={0.5} className="reveal-left" style={{ position: 'relative', maxWidth: '440px', margin: '0 auto' }}>
                         {/* Decorative frame lines */}
                         <div style={{
                             position: 'absolute', top: '-12px', left: '-12px', right: '12px', bottom: '12px',
@@ -67,13 +68,13 @@ export default function AboutSection() {
                         <div style={{ position: 'absolute', bottom: '-16px', right: '-16px', width: '24px', height: '24px', borderBottom: '2px solid var(--gold)', borderRight: '2px solid var(--gold)', zIndex: 2 }} />
 
                         {/* Coordinates (decorative like the reference) */}
-                        <div style={{
+                        <Parallax speed={-0.3} style={{
                             position: 'absolute', left: '-36px', top: '50%', transform: 'translateY(-50%) rotate(-90deg)',
                             fontFamily: 'var(--font-body)', fontSize: '0.6rem', letterSpacing: '0.12em',
                             color: 'var(--text-muted)', whiteSpace: 'nowrap', zIndex: 2,
                         }}>
                             27.7006° N, 83.4486° E
-                        </div>
+                        </Parallax>
 
                         <div style={{
                             position: 'relative',
@@ -101,8 +102,10 @@ export default function AboutSection() {
                                 position: 'absolute', inset: 0,
                                 background: 'linear-gradient(180deg, transparent 60%, rgba(5,10,7,0.4) 100%)',
                             }} />
+                            {/* Vertical line accent */}
+                            <div style={{ position: 'absolute', top: '0', bottom: '0', left: '-16px', width: '1px', background: 'linear-gradient(180deg, var(--gold), transparent)' }} />
                         </div>
-                    </div>
+                    </Parallax>
 
                     {/* Right - Editorial text */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
@@ -218,6 +221,6 @@ export default function AboutSection() {
           .about-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
         }
       `}</style>
-        </section>
+        </section >
     );
 }

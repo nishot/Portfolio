@@ -1,0 +1,22 @@
+﻿commit bc5df216f6808607873c0fa635c43e381be85d81
+Author: Nishot <nishottimal11@gmail.com>
+Date:   Fri Mar 6 15:08:41 2026 +0530
+
+    optimization and mobile support
+
+ portfolio/src/app/globals.css                | 381 ++++++++++++++-------------
+ portfolio/src/app/layout.tsx                 |   2 +
+ portfolio/src/components/ContactSection.tsx  |   2 +-
+ portfolio/src/components/Navbar.tsx          | 286 +++++++++++++-------
+ portfolio/src/components/ProjectsSection.tsx |   6 +-
+ portfolio/src/components/SkillsSection.tsx   |   9 +-
+ 6 files changed, 407 insertions(+), 279 deletions(-)
+
+commit e5499f7ad9a4fabc3fb786fe4c3a0878cb715a17
+Author: Nishot <nishottimal11@gmail.com>
+Date:   Fri Mar 6 00:21:11 2026 +0530
+
+    Link CV button to cv.pdf
+
+ portfolio/src/components/Navbar.tsx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)

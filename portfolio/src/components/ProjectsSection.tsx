@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import content from '@/content.json';
+import Parallax from './Parallax';
 
 export default function ProjectsSection() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -29,12 +30,12 @@ export default function ProjectsSection() {
             style={{
                 position: 'relative',
                 background: 'linear-gradient(180deg, #080f0b 0%, var(--forest-black) 100%)',
-                padding: '120px 40px',
+                padding: '60px 40px',
                 overflow: 'hidden',
             }}
         >
             {/* Background ambient glow */}
-            <div style={{
+            <Parallax speed={-0.6} style={{
                 position: 'absolute', top: '30%', right: '-10%',
                 width: '500px', height: '500px',
                 background: 'radial-gradient(ellipse, rgba(61,186,114,0.05) 0%, transparent 70%)',
@@ -73,7 +74,9 @@ export default function ProjectsSection() {
                     gap: '20px',
                 }}>
                     {content.projects.map((project, index) => (
-                        <ProjectCard key={project.title} project={project} index={index} />
+                        <Parallax key={project.title} speed={index % 2 === 0 ? 0.3 : 0.8} style={{ height: '100%' }}>
+                            <ProjectCard project={project} index={index} />
+                        </Parallax>
                     ))}
                 </div>
             </div>

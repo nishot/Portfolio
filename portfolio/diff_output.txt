@@ -1,0 +1,448 @@
+﻿diff --git a/portfolio/src/app/globals.css b/portfolio/src/app/globals.css
+index 75e5f05..ed5541e 100644
+--- a/portfolio/src/app/globals.css
++++ b/portfolio/src/app/globals.css
+@@ -1,5 +1,3 @@
+-@import "tailwindcss";
+-
+ @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+ 
+ :root {
+@@ -320,30 +318,9 @@ section {
+ 
+ /* Responsive: hide hero stats and socials on small screens */
+ @media (max-width: 768px) {
+-    html {
+-        font-size: 14px;
+-    }
+-
+-    section {
+-        padding-left: 20px !important;
+-        padding-right: 20px !important;
+-        padding-top: 80px !important;
+-        padding-bottom: 80px !important;
+-    }
+ 
+     .hero-stats,
+     .hero-socials {
+         display: none !important;
+     }
+-
+-    .glass-panel,
+-    .glass-panel-dark {
+-        padding: 24px 20px !important;
+-    }
+-}
+-
+-@media (max-width: 480px) {
+-    html {
+-        font-size: 13px;
+-    }
+ }
+\ No newline at end of file
+diff --git a/portfolio/src/app/layout.tsx b/portfolio/src/app/layout.tsx
+index ca6daf2..8786b53 100644
+--- a/portfolio/src/app/layout.tsx
++++ b/portfolio/src/app/layout.tsx
+@@ -2,7 +2,6 @@ import type { Metadata } from "next";
+ import "./globals.css";
+ import SmoothScroll from "@/components/SmoothScroll";
+ import CustomCursor from "@/components/CustomCursor";
+-import Navbar from "@/components/Navbar";
+ import BackToTop from "@/components/BackToTop";
+ import content from "@/content.json";
+ 
+@@ -35,7 +34,6 @@ export default function RootLayout({
+       <body suppressHydrationWarning>
+         <CustomCursor />
+         <SmoothScroll>
+-          <Navbar />
+           {children}
+         </SmoothScroll>
+         <BackToTop />
+diff --git a/portfolio/src/components/ContactSection.tsx b/portfolio/src/components/ContactSection.tsx
+index 1a86f26..00e6a7e 100644
+--- a/portfolio/src/components/ContactSection.tsx
++++ b/portfolio/src/components/ContactSection.tsx
+@@ -71,7 +71,7 @@ export default function ContactSection() {
+             style={{
+                 position: 'relative',
+                 background: 'linear-gradient(180deg, #060c09 0%, var(--forest-black) 100%)',
+-                padding: '60px 40px 80px',
++                padding: '120px 40px 80px',
+                 overflow: 'hidden',
+             }}
+         >
+diff --git a/portfolio/src/components/Navbar.tsx b/portfolio/src/components/Navbar.tsx
+index 8e60b6e..1874183 100644
+--- a/portfolio/src/components/Navbar.tsx
++++ b/portfolio/src/components/Navbar.tsx
+@@ -2,12 +2,10 @@
+ import { useState, useEffect } from 'react';
+ import Link from 'next/link';
+ import Image from 'next/image';
+-import { Menu, X } from 'lucide-react';
+ import content from '@/content.json';
+ 
+ export default function Navbar() {
+     const [scrolled, setScrolled] = useState(false);
+-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+ 
+     useEffect(() => {
+         const onScroll = () => setScrolled(window.scrollY > 60);
+@@ -15,215 +13,113 @@ export default function Navbar() {
+         return () => window.removeEventListener('scroll', onScroll);
+     }, []);
+ 
+-    const toggleMenu = () => {
+-        setIsMenuOpen(!isMenuOpen);
+-        if (!isMenuOpen) {
+-            document.body.style.overflow = 'hidden';
+-        } else {
+-            document.body.style.overflow = 'unset';
+-        }
+-    };
+-
+-    const closeMenu = () => {
+-        setIsMenuOpen(false);
+-        document.body.style.overflow = 'unset';
+-    };
+-
+     return (
+-        <>
+-            <nav
+-                style={{
+-                    position: 'fixed',
+-                    top: 0,
+-                    left: 0,
+-                    right: 0,
+-                    zIndex: 1000,
+-                    padding: scrolled ? '12px 20px' : '20px 20px',
+-                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+-                    background: scrolled
+-                        ? 'rgba(5, 10, 7, 0.85)'
+-                        : (isMenuOpen ? '#050a07' : 'transparent'),
+-                    backdropFilter: scrolled ? 'blur(20px)' : 'none',
+-                    borderBottom: scrolled ? '1px solid rgba(61, 186, 114, 0.12)' : 'none',
+-                }}
+-            >
+-                <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+-                    {/* Logo / Name */}
+-                    <Link href="#hero" onClick={closeMenu} style={{ textDecoration: 'none' }}>
+-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+-                            <div style={{
+-                                width: '34px', height: '34px',
+-                                borderRadius: '8px',
+-                                overflow: 'hidden',
+-                                boxShadow: '0 0 16px rgba(61,186,114,0.45)',
+-                                border: '1px solid rgba(61,186,114,0.3)',
+-                                flexShrink: 0,
+-                            }}>
+-                                <Image
+-                                    src="/logo.png"
+-                                    alt={content.personal.name}
+-                                    width={34}
+-                                    height={34}
+-                                    style={{ objectFit: 'cover', display: 'block' }}
+-                                />
+-                            </div>
+-                            <span style={{
+-                                fontFamily: 'var(--font-sans)',
+-                                fontWeight: 600,
+-                                fontSize: '0.95rem',
+-                                color: 'var(--text-primary)',
+-                                letterSpacing: '0.02em',
+-                            }} className="nav-logo-text">
+-                                {content.personal.name}
+-                            </span>
++        <nav
++            style={{
++                position: 'fixed',
++                top: 0,
++                left: 0,
++                right: 0,
++                zIndex: 100,
++                padding: scrolled ? '12px 40px' : '20px 40px',
++                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
++                background: scrolled
++                    ? 'rgba(5, 10, 7, 0.85)'
++                    : 'transparent',
++                backdropFilter: scrolled ? 'blur(20px)' : 'none',
++                borderBottom: scrolled ? '1px solid rgba(61, 186, 114, 0.12)' : 'none',
++            }}
++        >
++            <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
++                {/* Logo / Name */}
++                <Link href="#hero" style={{ textDecoration: 'none' }}>
++                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
++                        <div style={{
++                            width: '38px', height: '38px',
++                            borderRadius: '10px',
++                            overflow: 'hidden',
++                            boxShadow: '0 0 16px rgba(61,186,114,0.45)',
++                            border: '1px solid rgba(61,186,114,0.3)',
++                            flexShrink: 0,
++                        }}>
++                            <Image
++                                src="/logo.png"
++                                alt={content.personal.name}
++                                width={38}
++                                height={38}
++                                style={{ objectFit: 'cover', display: 'block' }}
++                            />
+                         </div>
+-                    </Link>
+-
+-                    {/* Desktop Nav Links */}
+-                    <div style={{ display: 'flex', alignItems: 'center', gap: '30px' }} className="nav-desktop">
+-                        {content.nav.map((item) => (
+-                            <Link
+-                                key={item.href}
+-                                href={item.href}
+-                                style={{
+-                                    fontFamily: 'var(--font-sans)',
+-                                    fontSize: '0.875rem',
+-                                    fontWeight: 400,
+-                                    color: 'var(--text-secondary)',
+-                                    textDecoration: 'none',
+-                                    letterSpacing: '0.05em',
+-                                    transition: 'color 0.3s ease',
+-                                    position: 'relative',
+-                                }}
+-                                onMouseEnter={e => (e.currentTarget.style.color = 'var(--forest-bright)')}
+-                                onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+-                            >
+-                                {item.label}
+-                            </Link>
+-                        ))}
+-                        {/* CV Button Desktop */}
+-                        <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+-                            <button
+-                                style={{
+-                                    padding: '8px 20px',
+-                                    background: 'linear-gradient(135deg, #2d7a4f, #1a3a2a)',
+-                                    border: '1px solid rgba(61, 186, 114, 0.4)',
+-                                    borderRadius: '50px',
+-                                    color: 'var(--forest-bright)',
+-                                    fontFamily: 'var(--font-sans)',
+-                                    fontSize: '0.8rem',
+-                                    fontWeight: 500,
+-                                    letterSpacing: '0.08em',
+-                                    cursor: 'pointer',
+-                                    transition: 'all 0.3s ease',
+-                                    boxShadow: '0 0 20px rgba(61, 186, 114, 0.2)',
+-                                }}
+-                            >
+-                                CV
+-                            </button>
+-                        </Link>
++                        <span style={{
++                            fontFamily: 'var(--font-sans)',
++                            fontWeight: 600,
++                            fontSize: '1rem',
++                            color: 'var(--text-primary)',
++                            letterSpacing: '0.02em',
++                        }}>
++                            {content.personal.name}
++                        </span>
+                     </div>
++                </Link>
+ 
+-                    {/* Mobile Menu Toggle */}
+-                    <button
+-                        onClick={toggleMenu}
+-                        style={{
+-                            display: 'none',
+-                            alignItems: 'center',
+-                            justifyContent: 'center',
+-                            background: 'rgba(61, 186, 114, 0.1)',
+-                            border: '1px solid rgba(61, 186, 114, 0.2)',
+-                            borderRadius: '8px',
+-                            padding: '8px',
+-                            color: 'var(--forest-bright)',
+-                            cursor: 'pointer',
+-                            zIndex: 1100,
+-                        }}
+-                        className="mobile-toggle"
+-                    >
+-                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+-                    </button>
+-                </div>
+-            </nav>
+-
+-            {/* Mobile Menu Overlay - Moved OUTSIDE nav for absolute control */}
+-            <div
+-                style={{
+-                    position: 'fixed',
+-                    inset: 0,
+-                    backgroundColor: '#050a07',
+-                    zIndex: 900,
+-                    display: 'flex',
+-                    flexDirection: 'column',
+-                    alignItems: 'center',
+-                    justifyContent: 'center',
+-                    padding: '80px 20px',
+-                    transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+-                    transform: isMenuOpen ? 'translateY(0)' : 'translateY(-100%)',
+-                    opacity: isMenuOpen ? 1 : 0,
+-                    pointerEvents: isMenuOpen ? 'all' : 'none',
+-                }}
+-            >
+-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px' }}>
+-                    {content.nav.map((item, i) => (
++                {/* Desktop Nav Links */}
++                <div style={{ display: 'flex', alignItems: 'center', gap: '36px' }} className="hidden md:flex">
++                    {content.nav.map((item) => (
+                         <Link
+                             key={item.href}
+                             href={item.href}
+-                            onClick={closeMenu}
+                             style={{
+-                                fontFamily: 'var(--font-serif)',
+-                                fontSize: '2.5rem',
+-                                fontWeight: 300,
+-                                color: 'var(--text-primary)',
++                                fontFamily: 'var(--font-sans)',
++                                fontSize: '0.875rem',
++                                fontWeight: 400,
++                                color: 'var(--text-secondary)',
+                                 textDecoration: 'none',
+-                                letterSpacing: '0.02em',
+-                                transition: 'all 0.3s ease',
+-                                opacity: isMenuOpen ? 1 : 0,
+-                                transform: isMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+-                                transitionDelay: `${i * 0.05}s`,
++                                letterSpacing: '0.05em',
++                                transition: 'color 0.3s ease',
++                                position: 'relative',
+                             }}
++                            onMouseEnter={e => (e.currentTarget.style.color = 'var(--forest-bright)')}
++                            onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+                         >
+                             {item.label}
+                         </Link>
+                     ))}
+-
+-                    <div style={{ marginTop: '20px', width: '240px' }}>
+-                        <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" onClick={closeMenu} style={{ textDecoration: 'none' }}>
+-                            <button
+-                                style={{
+-                                    width: '100%',
+-                                    padding: '16px',
+-                                    background: 'linear-gradient(135deg, #3dba72, #2d7a4f)',
+-                                    border: 'none',
+-                                    borderRadius: '12px',
+-                                    color: '#050a07',
+-                                    fontFamily: 'var(--font-sans)',
+-                                    fontSize: '1rem',
+-                                    fontWeight: 600,
+-                                    letterSpacing: '0.1em',
+-                                    cursor: 'pointer',
+-                                    boxShadow: '0 0 20px rgba(61, 186, 114, 0.3)',
+-                                }}
+-                            >
+-                                DOWNLOAD CV
+-                            </button>
+-                        </Link>
+-                    </div>
+                 </div>
++
++                {/* Contact Button */}
++                <Link href="/cv.pdf" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
++                    <button
++                        style={{
++                            padding: '10px 24px',
++                            background: 'linear-gradient(135deg, #2d7a4f, #1a3a2a)',
++                            border: '1px solid rgba(61, 186, 114, 0.4)',
++                            borderRadius: '50px',
++                            color: 'var(--forest-bright)',
++                            fontFamily: 'var(--font-sans)',
++                            fontSize: '0.85rem',
++                            fontWeight: 500,
++                            letterSpacing: '0.08em',
++                            cursor: 'pointer',
++                            transition: 'all 0.3s ease',
++                            boxShadow: '0 0 20px rgba(61, 186, 114, 0.2)',
++                        }}
++                        onMouseEnter={e => {
++                            e.currentTarget.style.background = 'linear-gradient(135deg, #3dba72, #2d7a4f)';
++                            e.currentTarget.style.boxShadow = '0 0 30px rgba(61, 186, 114, 0.5)';
++                            e.currentTarget.style.color = '#050a07';
++                        }}
++                        onMouseLeave={e => {
++                            e.currentTarget.style.background = 'linear-gradient(135deg, #2d7a4f, #1a3a2a)';
++                            e.currentTarget.style.boxShadow = '0 0 20px rgba(61, 186, 114, 0.2)';
++                            e.currentTarget.style.color = 'var(--forest-bright)';
++                        }}
++                    >
++                        CV
++                    </button>
++                </Link>
+             </div>
+ 
+-            <style dangerouslySetInnerHTML={{
+-                __html: `
+-                @media (min-width: 769px) {
+-                    .nav-desktop { display: flex !important; }
+-                    .mobile-toggle { display: none !important; }
+-                }
+-                @media (max-width: 768px) {
+-                    .nav-desktop { display: none !important; }
+-                    .mobile-toggle { display: flex !important; }
+-                    .nav-logo-text { display: none !important; }
+-                }
+-            `}} />
+-        </>
++
++        </nav>
+     );
+ }
+diff --git a/portfolio/src/components/ProjectsSection.tsx b/portfolio/src/components/ProjectsSection.tsx
+index b606db4..6bdb15d 100644
+--- a/portfolio/src/components/ProjectsSection.tsx
++++ b/portfolio/src/components/ProjectsSection.tsx
+@@ -69,8 +69,8 @@ export default function ProjectsSection() {
+                 {/* Projects grid */}
+                 <div style={{
+                     display: 'grid',
+-                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+-                    gap: '20px',
++                    gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
++                    gap: '24px',
+                 }}>
+                     {content.projects.map((project, index) => (
+                         <ProjectCard key={project.title} project={project} index={index} />
+@@ -101,7 +101,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
+                 backdropFilter: 'blur(20px)',
+                 border: '1px solid rgba(61, 186, 114, 0.12)',
+                 borderRadius: '16px',
+-                padding: '40px 20px 32px',
++                padding: '40px 32px 32px',
+                 cursor: 'pointer',
+                 overflow: 'hidden',
+                 transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+diff --git a/portfolio/src/components/SkillsSection.tsx b/portfolio/src/components/SkillsSection.tsx
+index 5be6859..23932c3 100644
+--- a/portfolio/src/components/SkillsSection.tsx
++++ b/portfolio/src/components/SkillsSection.tsx
+@@ -90,15 +90,16 @@ export default function SkillsSection() {
+ 
+             <div style={{ maxWidth: '1300px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+ 
+-                <div className="reveal-up" style={{ marginBottom: '40px', textAlign: 'center' }}>
++                {/* Section header */}
++                <div className="reveal-up" style={{ marginBottom: '70px', textAlign: 'center' }}>
+                     <span style={{
+                         fontFamily: 'var(--font-body)',
+-                        fontSize: '0.65rem',
+-                        letterSpacing: '0.2em',
++                        fontSize: '0.7rem',
++                        letterSpacing: '0.25em',
+                         color: 'var(--forest-glow)',
+                         textTransform: 'uppercase',
+                         display: 'block',
+-                        marginBottom: '8px',
++                        marginBottom: '12px',
+                     }}>
+                         Γùå &nbsp; Expertise
+                     </span>

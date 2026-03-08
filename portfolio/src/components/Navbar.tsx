@@ -65,6 +65,7 @@ export default function Navbar() {
                                     width={34}
                                     height={34}
                                     style={{ objectFit: 'cover', display: 'block' }}
+                                    priority
                                 />
                             </div>
                             <span style={{
@@ -85,6 +86,17 @@ export default function Navbar() {
                             <Link
                                 key={item.href}
                                 href={item.href}
+                                onClick={(e) => {
+                                    if (item.href.startsWith('#')) {
+                                        e.preventDefault();
+                                        const target = document.querySelector(item.href);
+                                        if (target && 'lenis' in window) {
+                                            window.history.pushState(null, '', item.href);
+                                            (window as unknown as { lenis: { scrollTo: (el: Element) => void } }).lenis.scrollTo(target);
+                                        }
+                                    }
+                                    closeMenu();
+                                }}
                                 style={{
                                     fontFamily: 'var(--font-sans)',
                                     fontSize: '0.875rem',
@@ -169,7 +181,17 @@ export default function Navbar() {
                         <Link
                             key={item.href}
                             href={item.href}
-                            onClick={closeMenu}
+                            onClick={(e) => {
+                                if (item.href.startsWith('#')) {
+                                    e.preventDefault();
+                                    const target = document.querySelector(item.href);
+                                    if (target && 'lenis' in window) {
+                                        window.history.pushState(null, '', item.href);
+                                        (window as unknown as { lenis: { scrollTo: (el: Element) => void } }).lenis.scrollTo(target);
+                                    }
+                                }
+                                closeMenu();
+                            }}
                             style={{
                                 fontFamily: 'var(--font-serif)',
                                 fontSize: '2.5rem',
