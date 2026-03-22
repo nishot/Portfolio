@@ -116,6 +116,20 @@
       "githubUrl": "https://github.com/keshavraj936/Reynora-AI-",
       "demoUrl": "",
       "featured": true
+    },
+    {
+      "title": "System Health & Failure Predictor ",
+      "description": "A production-oriented Machine Learning system that predicts machine failure risk using operational metrics and exposes predictions via a scalable REST API.",
+      "tech": [
+        "Python",
+        "FastAPI",
+        "Sklearn",
+        "Pandas",
+        "NumPy"
+      ],
+      "githubUrl": "https://github.com/nishot/System_Health_failure_predictor",
+      "demoUrl": "https://nishot.github.io/System_Health_failure_predictor/",
+      "featured": true
     }
   ],
   "contact": {
